@@ -12,7 +12,7 @@
                 <label class="block text-sm font-medium text-dark-700 mb-1">Nome do Produto</label>
                 <input 
                     type="text" 
-                    wire:model.live="search" 
+                    wire:model.live="searchName" 
                     placeholder="Digite para buscar..." 
                     class="w-full px-4 py-2 border border-primary-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 placeholder-primary-300"
                 >
@@ -97,7 +97,7 @@
 
         @if($products->hasPages())
             <div class="px-6 py-4 border-t border-primary-200 bg-primary-50">
-                {{ $products->links() }}
+                {{ $products->links('livewire::custom-pagination') }}
             </div>
         @endif
     </div>

@@ -23,5 +23,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::defaultView('pagination::tailwind');
     
         Paginator::defaultSimpleView('pagination::simple-tailwind');
+
+        \Livewire\Livewire::forceAssetInjection();
     }
 }
