@@ -68,5 +68,5 @@ localhost:8000
 
 ### Executar testes:
 ```
-php artisan test
+php artisan test --filter=ProductSearchTest
 ```
