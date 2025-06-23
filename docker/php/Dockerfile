@@ -14,17 +14,26 @@ RUN apt-get update && apt-get install -y \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN mkdir -p /var/www/storage/framework/{cache,views,sessions}
-RUN mkdir -p /var/www/bootstrap/cache
-
-RUN chown -R www-data:www-data /var/www/storage
-RUN chown -R www-data:www-data /var/www/bootstrap/cache
-RUN chmod -R 775 /var/www/storage
-RUN chmod -R 775 /var/www/bootstrap/cache
+RUN mkdir -p /var/www/storage/framework/cache \
+    /var/www/storage/framework/sessions \
+    /var/www/storage/framework/views \
+    /var/www/bootstrap/cache && \
+    chown -R www-data:www-data /var/www/storage \
+    /var/www/bootstrap/cache && \
+    chmod -R 775 /var/www/storage \
+    /var/www/bootstrap/cache
 
 WORKDIR /var/www
 
-COPY docker/startup.sh /usr/local/bin/startup
-RUN chmod +x /usr/local/bin/startup
-ENTRYPOINT ["startup"]
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --no-autoloader --no-scripts --no-interaction
+COPY . .
+RUN composer dump-autoload --optimize && \
+    php artisan package:discover --ansi
+
+
+
+COPY docker/php/startup.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/startup.sh
+ENTRYPOINT ["startup.sh"]
 CMD ["php-fpm"]
