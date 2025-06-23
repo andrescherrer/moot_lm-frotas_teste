@@ -1,3 +1,3 @@
-docker exec -it application bash
+docker exec -it application php artisan migrate:refresh --seed
 
-php artisan migrate
+
