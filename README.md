@@ -46,11 +46,6 @@ php artisan key:generate
 docker exec -it app php artisan migrate:refresh --seed
 ```
 
-### Instale as dependências de front
-```
-docker exec -it app npm install
-```
-
 ### Execute o script
 ```
 docker exec -it app npm run dev
