@@ -46,11 +46,22 @@ php artisan key:generate
 docker exec -it app php artisan migrate:refresh --seed
 ```
 
+### Instale as dependências de front
+```
+docker exec -it app npm install
+```
 
+### Execute o script
+```
+docker exec -it app npm run dev
+```
 
+### Acesse a aplicação:
+```
+localhost:8000
+```
 
-sudo chown -R $USER:$USER /home/andre/projetos/moot/moot_lm-frotas_teste
+### usuário: admin@teste.com 
+### senha: senha123
 
-npm cache clean --force
-
-npm install
+![Filtro de Produtos](imagem_filtro_produtos.png)
