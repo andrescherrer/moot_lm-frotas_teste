@@ -65,3 +65,8 @@ localhost:8000
 ### senha: senha123
 
 ![Filtro de Produtos](imagem_filtro_produtos.png)
+
+### Executar testes:
+```
+php artisan test
+```
