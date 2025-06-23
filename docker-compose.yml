@@ -9,6 +9,7 @@ services:
     volumes:
       - .:/var/www
       - /var/www/node_modules
+      - npm_cache:/home/node/.npm
     user: "${UID:-1000}:${GID:-1000}"
     environment:
       - WWWUSER=${UID:-1000}
@@ -53,6 +54,7 @@ services:
       - lmfrotas
 
 volumes:
+  npm_cache:
   postgres_data:
     driver: local
 
