@@ -25,7 +25,9 @@ RUN mkdir -p    /var/www/storage/framework/cache \
     chmod -R 775                /var/www/storage \
                                 /var/www/bootstrap/cache
 
-WORKDIR /var/www
+RUN chown www-data:www-data /var/www
+
+COPY --chown=www-data:www-data ./ .
 
 COPY composer.json composer.lock ./
 RUN composer install --no-dev --no-autoloader --no-scripts --no-interaction
